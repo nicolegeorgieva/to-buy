@@ -1,4 +1,4 @@
-package com.tobuy.persistence.database.activityrecords
+package com.example.tobuy.persistence.database.activityrecords
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -1,7 +1,7 @@
-package com.tobuy.di
+package com.example.tobuy.di
 
 import android.content.Context
-import com.tobuy.persistence.database.AppDatabase
+import com.example.tobuy.persistence.database.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

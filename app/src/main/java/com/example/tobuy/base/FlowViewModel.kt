@@ -1,4 +1,4 @@
-package com.tobuy.base
+package com.example.tobuy.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

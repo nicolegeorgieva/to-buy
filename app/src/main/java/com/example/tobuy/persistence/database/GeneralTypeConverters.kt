@@ -1,4 +1,4 @@
-package com.tobuy.persistence.database
+package com.example.tobuy.persistence.database
 
 import androidx.room.TypeConverter
 import java.time.Instant

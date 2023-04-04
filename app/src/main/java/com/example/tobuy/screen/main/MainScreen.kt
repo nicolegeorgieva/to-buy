@@ -1,4 +1,4 @@
-package com.tobuy.screen.main
+package com.example.tobuy.screen.main
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.tobuy.MainActivity
+import com.example.tobuy.MainActivity
 
 @Composable
 fun MainScreen() {

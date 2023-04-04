@@ -1,7 +1,7 @@
-package com.tobuy.persistence.database.activityrecords
+package com.example.tobuy.persistence.database.activityrecords
 
 import com.employees.base.Action
-import com.tobuy.persistence.database.AppDatabase
+import com.example.tobuy.persistence.database.AppDatabase
 import javax.inject.Inject
 
 class WriteActivityRecordAct @Inject constructor(

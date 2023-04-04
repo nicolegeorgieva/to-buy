@@ -1,7 +1,7 @@
-package com.tobuy.screen.main
+package com.example.tobuy.screen.main
 
-import com.tobuy.base.FlowViewModel
-import com.tobuy.persistence.database.activityrecords.ActivityRecordsFlow
+import com.example.tobuy.base.FlowViewModel
+import com.example.tobuy.persistence.database.activityrecords.ActivityRecordsFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine

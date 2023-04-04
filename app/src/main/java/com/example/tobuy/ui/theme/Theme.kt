@@ -1,4 +1,4 @@
-package com.tobuy.ui.theme
+package com.example.tobuy.ui.theme
 
 import android.app.Activity
 import android.os.Build

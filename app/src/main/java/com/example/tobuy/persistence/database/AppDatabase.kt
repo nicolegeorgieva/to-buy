@@ -1,12 +1,12 @@
-package com.tobuy.persistence.database
+package com.example.tobuy.persistence.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.tobuy.persistence.database.activityrecords.ActivityRecordDao
-import com.tobuy.persistence.database.activityrecords.ActivityRecordEntity
+import com.example.tobuy.persistence.database.activityrecords.ActivityRecordDao
+import com.example.tobuy.persistence.database.activityrecords.ActivityRecordEntity
 
 @Database(
     entities = [

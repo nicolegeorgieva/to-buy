@@ -1,4 +1,4 @@
-package com.tobuy.domain.data
+package com.example.tobuy.domain.data
 
 class ProductInfo(
     val name: String,
