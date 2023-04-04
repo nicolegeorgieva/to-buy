@@ -1,4 +1,4 @@
-package com.example.tobuy
+package com.tobuy
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

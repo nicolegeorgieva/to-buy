@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -44,6 +46,12 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
+    testOptions {
+        unitTests.all {
+            it.useJUnitPlatform()
+        }
+    }
 }
 
 dependencies {
@@ -60,4 +68,40 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+
+    // region Network
+    var ktor = "2.0.3"
+    implementation "io.ktor:ktor-client-core:$ktor"
+    implementation "io.ktor:ktor-client-okhttp:$ktor"
+    implementation "io.ktor:ktor-client-logging:$ktor"
+    implementation "io.ktor:ktor-client-content-negotiation:$ktor"
+    implementation "io.ktor:ktor-serialization-gson:$ktor"
+    implementation "com.google.code.gson:gson:2.9.0"
+    implementation "io.coil-kt:coil-compose:2.2.2"
+    // endregion
+
+    // region Room DB
+    def room_version = "2.4.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    // To use Kotlin annotation processing tool (kapt)
+    kapt "androidx.room:room-compiler:$room_version"
+    // optional - Test helpers
+    testImplementation "androidx.room:room-testing:$room_version"
+    // optional - Paging 3 Integration
+    implementation "androidx.room:room-paging:$room_version"
+    // endregion
+
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
+
+    testImplementation "io.kotest:kotest-runner-junit5:5.5.5"
+    testImplementation "io.kotest:kotest-assertions-core:5.5.5"
+}
+
+kapt {
+    correctErrorTypes true
 }
