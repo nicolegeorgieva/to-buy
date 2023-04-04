@@ -4,19 +4,22 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.tobuy.persistence.database.productrecords.ProductRecordDao
-import com.tobuy.persistence.database.productrecords.ProductRecordEntity
+import androidx.room.TypeConverters
+import com.tobuy.persistence.database.activityrecords.ActivityRecordDao
+import com.tobuy.persistence.database.activityrecords.ActivityRecordEntity
 
 @Database(
     entities = [
-        ProductRecordEntity::class
+        ActivityRecordEntity::class
     ],
     version = 1,
     exportSchema = true,
 )
-
+@TypeConverters(
+    GeneralTypeConverters::class
+)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun productRecordDao(): ProductRecordDao
+    abstract fun activityRecordDao(): ActivityRecordDao
 
     companion object {
         private const val DB_NAME = "to-buy.db"

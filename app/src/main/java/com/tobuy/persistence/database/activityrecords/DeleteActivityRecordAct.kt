@@ -1,14 +1,14 @@
-package com.tobuy.persistence.database.productrecords
+package com.tobuy.persistence.database.activityrecords
 
 import com.employees.base.Action
 import com.tobuy.persistence.database.AppDatabase
 import java.util.*
 import javax.inject.Inject
 
-class DeleteProductRecordAct @Inject constructor(
+class DeleteActivityRecordAct @Inject constructor(
     private val appDatabase: AppDatabase
 ) : Action<UUID, Unit>() {
     override suspend fun action(input: UUID) {
-        appDatabase.productRecordDao().deleteById(input)
+        appDatabase.activityRecordDao().deleteById(input)
     }
 }
