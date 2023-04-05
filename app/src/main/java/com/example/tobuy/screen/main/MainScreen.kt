@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -63,7 +64,7 @@ private fun UI(
             item(key = "total price of desired products") {
                 Row() {
                     Text(
-                        text = "Total price of desired products:",
+                        text = stringResource(R.string.total_price_products_section),
                         style = MaterialTheme.typography.bodyLarge
                     )
 
@@ -89,6 +90,7 @@ private fun UI(
         ) {
             Text(
                 text = "+",
+                textAlign = TextAlign.Center,
                 fontSize = 32.sp
             )
         }
