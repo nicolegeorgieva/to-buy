@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.tobuy.R
+import com.example.tobuy.screen.addproduct.BottomSheetContent
 import kotlinx.coroutines.launch
 
 @Composable
@@ -52,17 +53,6 @@ private fun UI(
         modifier = Modifier.fillMaxSize()
     ) {
         MainContent(bottomState = bottomSheetState)
-    }
-}
-
-@Composable
-fun BottomSheetContent() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(12.dp)
-    ) {
-        Text("Your bottom sheet content")
     }
 }
 
