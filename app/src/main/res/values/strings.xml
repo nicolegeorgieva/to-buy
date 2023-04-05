@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">To Buy</string>
+    <string name="welcome_message">\"Welcome in \"</string>
+    <string name="welcome_message_app_name">To Buy!</string>
 </resources>
