@@ -19,12 +19,17 @@ fun BottomSheetContent() {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        Text("Name", style = MaterialTheme.typography.bodyLarge)
-        Text("Link", style = MaterialTheme.typography.bodyLarge)
-        Text("Image", style = MaterialTheme.typography.bodyLarge)
-        Text("Description", style = MaterialTheme.typography.bodyLarge)
-        Text("Category", style = MaterialTheme.typography.bodyLarge)
-        Text("Price", style = MaterialTheme.typography.bodyLarge)
+        ParamWithValue(text = "Name")
+
+        ParamWithValue(text = "Link")
+
+        ParamWithValue(text = "Image")
+
+        ParamWithValue(text = "Description")
+
+        ParamWithValue(text = "Category")
+
+        ParamWithValue(text = "Price")
 
         Spacer(modifier = Modifier.height(24.dp))
 
@@ -36,4 +41,23 @@ fun BottomSheetContent() {
             )
         }
     }
+}
+
+@Composable
+fun ParamWithValue(text: String) {
+    Row(modifier = Modifier.fillMaxWidth()) {
+        Text(
+            modifier = Modifier.weight(1f),
+            text = text,
+            style = MaterialTheme.typography.bodyLarge
+        )
+
+        Text(
+            modifier = Modifier.weight(2f),
+            text = "_",
+            style = MaterialTheme.typography.bodyLarge
+        )
+    }
+
+    Spacer(modifier = Modifier.height(12.dp))
 }
