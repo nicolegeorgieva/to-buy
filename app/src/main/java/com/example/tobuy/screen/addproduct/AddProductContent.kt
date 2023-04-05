@@ -5,8 +5,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.tobuy.component.InputField
 
 @Composable
 fun BottomSheetContent() {
@@ -19,17 +21,17 @@ fun BottomSheetContent() {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        ParamWithValue(text = "Name")
+        ParamWithValue(text = "Name", value = "", placeholder = "Enter name")
 
-        ParamWithValue(text = "Link")
+        ParamWithValue(text = "Link", value = "", placeholder = "Enter link")
 
-        ParamWithValue(text = "Image")
+        ParamWithValue(text = "Image", value = "", placeholder = "Enter image link")
 
-        ParamWithValue(text = "Description")
+        ParamWithValue(text = "Description", value = "", placeholder = "Enter description")
 
-        ParamWithValue(text = "Category")
+        ParamWithValue(text = "Category", value = "", placeholder = "Enter category")
 
-        ParamWithValue(text = "Price")
+        ParamWithValue(text = "Price", value = "", placeholder = "Enter price")
 
         Spacer(modifier = Modifier.height(24.dp))
 
@@ -44,18 +46,24 @@ fun BottomSheetContent() {
 }
 
 @Composable
-fun ParamWithValue(text: String) {
-    Row(modifier = Modifier.fillMaxWidth()) {
+fun ParamWithValue(
+    text: String, value: String, placeholder: String, onValueChange: (String) -> Unit = {}
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         Text(
             modifier = Modifier.weight(1f),
             text = text,
             style = MaterialTheme.typography.bodyLarge
         )
 
-        Text(
+        InputField(
             modifier = Modifier.weight(2f),
-            text = "_",
-            style = MaterialTheme.typography.bodyLarge
+            value = value,
+            placeholder = placeholder,
+            onValueChange = onValueChange
         )
     }
 
