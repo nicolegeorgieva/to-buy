@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.tobuy.R
-import com.example.tobuy.screen.addproduct.BottomSheetContent
+import com.example.tobuy.screen.addproduct.AddProductScreen
 import kotlinx.coroutines.launch
 
 @Composable
@@ -41,7 +41,7 @@ private fun UI(
 
     ModalBottomSheetLayout(
         sheetContent = {
-            BottomSheetContent()
+            AddProductScreen()
         },
         sheetShape = RoundedCornerShape(
             topStart = 16.dp,

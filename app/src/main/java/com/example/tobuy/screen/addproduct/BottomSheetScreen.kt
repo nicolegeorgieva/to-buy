@@ -5,18 +5,34 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.tobuy.component.InputField
 
 @Composable
-fun BottomSheetContent() {
+fun AddProductScreen() {
+    val viewModel: BottomSheetViewModel = viewModel()
+    val state by viewModel.uiState.collectAsState()
+
+    BottomSheetContent(state = state, onEvent = viewModel::onEvent)
+}
+
+@Composable
+fun BottomSheetContent(
+    state: BottomSheetState,
+    onEvent: (BottomSheetEvent) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(12.dp)
     ) {
+        Text(text = state.sharedText)
+
         Text("Add new product", style = MaterialTheme.typography.headlineMedium)
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -36,7 +52,9 @@ fun BottomSheetContent() {
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(
-            onClick = { /*TODO*/ }
+            onClick = {
+                //TODO
+            }
         ) {
             Text(
                 text = "Save"
