@@ -37,7 +37,10 @@ private fun UI(
     onEvent: (MainEvent) -> Unit
 ) {
     val bottomSheetState =
-        rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
+        rememberModalBottomSheetState(
+            initialValue = ModalBottomSheetValue.Hidden,
+            skipHalfExpanded = true
+        )
 
     ModalBottomSheetLayout(
         sheetContent = {
