@@ -1,5 +1,5 @@
 package com.example.tobuy.screen.addproduct
 
-class BottomSheetState(
+class AddProductState(
     val sharedText: String
 )

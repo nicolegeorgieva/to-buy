@@ -1,5 +1,5 @@
 package com.example.tobuy.screen.addproduct
 
-sealed interface BottomSheetEvent {
+sealed interface AddProductEvent {
 
 }

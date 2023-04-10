@@ -15,7 +15,7 @@ import com.example.tobuy.component.InputField
 
 @Composable
 fun AddProductScreen() {
-    val viewModel: BottomSheetViewModel = viewModel()
+    val viewModel: AddProductViewModel = viewModel()
     val state by viewModel.uiState.collectAsState()
 
     BottomSheetContent(state = state, onEvent = viewModel::onEvent)
@@ -23,8 +23,8 @@ fun AddProductScreen() {
 
 @Composable
 fun BottomSheetContent(
-    state: BottomSheetState,
-    onEvent: (BottomSheetEvent) -> Unit
+    state: AddProductState,
+    onEvent: (AddProductEvent) -> Unit
 ) {
     Column(
         modifier = Modifier

@@ -9,22 +9,22 @@ import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 @HiltViewModel
-class BottomSheetViewModel @Inject constructor(
-) : FlowViewModel<BottomSheetState, BottomSheetEvent>() {
-    override val initialUi = BottomSheetState(
+class AddProductViewModel @Inject constructor(
+) : FlowViewModel<AddProductState, AddProductEvent>() {
+    override val initialUi = AddProductState(
         sharedText = ""
     )
 
-    override val uiFlow: Flow<BottomSheetState> = combine(
+    override val uiFlow: Flow<AddProductState> = combine(
         sharedText,
         flowOf(Unit),
     ) { sharedText, _ ->
-        BottomSheetState(
+        AddProductState(
             sharedText = sharedText ?: ""
         )
     }
 
-    override suspend fun handleEvent(event: BottomSheetEvent) {
+    override suspend fun handleEvent(event: AddProductEvent) {
 
     }
 }
