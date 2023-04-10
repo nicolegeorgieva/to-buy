@@ -31,15 +31,17 @@ fun BottomSheetContent(
             .fillMaxSize()
             .padding(12.dp)
     ) {
-        Text(text = state.sharedText)
-
         Text("Add new product", style = MaterialTheme.typography.headlineMedium)
 
         Spacer(modifier = Modifier.height(24.dp))
 
         ParamWithValue(text = "Name", value = "", placeholder = "Enter name")
 
-        ParamWithValue(text = "Link", value = "", placeholder = "Enter link")
+        ParamWithValue(
+            text = "Link",
+            value = state.sharedText.ifEmpty { "" },
+            placeholder = "Enter link"
+        )
 
         ParamWithValue(text = "Image", value = "", placeholder = "Enter image link")
 
