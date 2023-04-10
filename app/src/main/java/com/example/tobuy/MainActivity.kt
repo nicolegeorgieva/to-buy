@@ -34,4 +34,9 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        sharedText.value = intent?.getStringExtra(Intent.EXTRA_TEXT)
+    }
 }

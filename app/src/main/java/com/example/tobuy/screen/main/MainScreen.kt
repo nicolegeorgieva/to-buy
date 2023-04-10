@@ -42,6 +42,12 @@ private fun UI(
             skipHalfExpanded = true
         )
 
+    LaunchedEffect(state.sharedLink) {
+        if (state.sharedLink?.isNotEmpty() == true) {
+            bottomSheetState.show()
+        }
+    }
+
     ModalBottomSheetLayout(
         sheetContent = {
             AddProductScreen(bottomSheetState = bottomSheetState)
