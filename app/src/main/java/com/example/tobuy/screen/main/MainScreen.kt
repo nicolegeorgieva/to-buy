@@ -44,7 +44,7 @@ private fun UI(
 
     ModalBottomSheetLayout(
         sheetContent = {
-            AddProductScreen()
+            AddProductScreen(bottomSheetState = bottomSheetState)
         },
         sheetShape = RoundedCornerShape(
             topStart = 16.dp,
@@ -55,13 +55,13 @@ private fun UI(
         scrimColor = Color.Black.copy(alpha = 0.6f),
         modifier = Modifier.fillMaxSize()
     ) {
-        MainContent(bottomState = bottomSheetState)
+        MainContent(bottomSheetState = bottomSheetState)
     }
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun MainContent(bottomState: ModalBottomSheetState) {
+fun MainContent(bottomSheetState: ModalBottomSheetState) {
     Box {
         LazyColumn(
             modifier = Modifier
@@ -115,7 +115,7 @@ fun MainContent(bottomState: ModalBottomSheetState) {
             shape = CircleShape,
             onClick = {
                 coroutineScope.launch {
-                    bottomState.show()
+                    bottomSheetState.show()
                 }
             }
         ) {
