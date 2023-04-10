@@ -1,6 +1,5 @@
 package com.example.tobuy.screen.addproduct
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetState
@@ -15,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.tobuy.component.BackButton
 import com.example.tobuy.component.InputField
 import kotlinx.coroutines.launch
 
@@ -24,28 +24,40 @@ fun AddProductScreen(bottomSheetState: ModalBottomSheetState) {
     val viewModel: AddProductViewModel = viewModel()
     val state by viewModel.uiState.collectAsState()
 
-    BottomSheetContent(state = state, onEvent = viewModel::onEvent)
-
-    val coroutineScope = rememberCoroutineScope()
-
-    BackHandler(enabled = bottomSheetState.isVisible) {
-        coroutineScope.launch {
-            bottomSheetState.hide()
-        }
-    }
+    BottomSheetContent(
+        state = state,
+        onEvent = viewModel::onEvent,
+        bottomSheetState = bottomSheetState
+    )
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun BottomSheetContent(
     state: AddProductState,
-    onEvent: (AddProductEvent) -> Unit
+    onEvent: (AddProductEvent) -> Unit,
+    bottomSheetState: ModalBottomSheetState
 ) {
+    val coroutineScope = rememberCoroutineScope()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(12.dp)
     ) {
-        Text("Add new product", style = MaterialTheme.typography.headlineMedium)
+        Row() {
+            Text("Add new product", style = MaterialTheme.typography.headlineMedium)
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            BackButton(
+                onBack = {
+                    coroutineScope.launch {
+                        bottomSheetState.hide()
+                    }
+                }
+            )
+        }
 
         Spacer(modifier = Modifier.height(24.dp))
 
