@@ -96,18 +96,15 @@ fun BottomSheetContent(
 fun ParamWithValue(
     text: String, value: String, placeholder: String, onValueChange: (String) -> Unit = {}
 ) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
+    Column {
         Text(
-            modifier = Modifier.weight(1f),
             text = text,
             style = MaterialTheme.typography.bodyLarge
         )
 
+        Spacer(modifier = Modifier.height(8.dp))
+
         InputField(
-            modifier = Modifier.weight(2f),
             value = value,
             placeholder = placeholder,
             onValueChange = onValueChange
@@ -124,18 +121,15 @@ fun LinkParamWithValue(
     placeholder: String,
     onValueChange: (String) -> Unit = {}
 ) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
+    Column {
         Text(
-            modifier = Modifier.weight(1f),
             text = text,
             style = MaterialTheme.typography.bodyLarge
         )
 
+        Spacer(modifier = Modifier.height(8.dp))
+
         ClickableLinkInputField(
-            modifier = Modifier.weight(2f),
             value = value,
             placeholder = placeholder,
             onValueChange = onValueChange
@@ -157,8 +151,12 @@ fun ClickableLinkInputField(
     val coroutineScope = rememberCoroutineScope()
     val launchIntent = remember { mutableStateOf(false) }
 
-    Row(modifier = modifier) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         InputField(
+            modifier = Modifier.weight(2f),
             value = value,
             onValueChange = onValueChange,
             singleLine = true,
@@ -167,20 +165,13 @@ fun ClickableLinkInputField(
 
         if (value.isNotEmpty()) {
             Button(
+                modifier = Modifier.weight(1f),
                 onClick = {
                     launchIntent.value = true
-                },
+                }
             ) {
                 Text("Open")
             }
-        }
-
-        if (value.isEmpty()) {
-            Text(
-                text = placeholder,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
         }
     }
 
