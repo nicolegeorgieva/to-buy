@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material3.Button
@@ -15,10 +13,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.tobuy.component.BackButton
 import com.example.tobuy.component.InputField
@@ -166,44 +162,36 @@ fun ClickableLinkInputField(
     val coroutineScope = rememberCoroutineScope()
     val launchIntent = remember { mutableStateOf(false) }
 
-    Box(modifier = modifier) {
-        BasicTextField(
+    Row {
+        InputField(
             value = value,
             onValueChange = onValueChange,
             singleLine = true,
-            textStyle = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.matchParentSize()
+            modifier = modifier
+                .zIndex(1f)
+                .weight(1f),
+            placeholder = placeholder
         )
 
-        if (value.isEmpty()) {
-            Text(
-                text = placeholder,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-        }
-
         if (value.isNotEmpty()) {
-            val annotatedString = buildAnnotatedString {
-                append(value)
-                addStyle(
-                    SpanStyle(
-                        color = MaterialTheme.colorScheme.tertiary,
-                        textDecoration = TextDecoration.Underline
-                    ),
-                    start = 0,
-                    end = value.length
-                )
-            }
-
-            ClickableText(
-                text = annotatedString,
-                onClick = { offset ->
+            Button(
+                onClick = {
                     launchIntent.value = true
                 },
-                modifier = Modifier.matchParentSize()
-            )
+                modifier = Modifier.zIndex(2f)
+            ) {
+                Text("Open")
+            }
         }
+    }
+
+    if (value.isEmpty()) {
+        Text(
+            text = placeholder,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = modifier.zIndex(0f)
+        )
     }
 
     DisposableEffect(launchIntent.value) {
