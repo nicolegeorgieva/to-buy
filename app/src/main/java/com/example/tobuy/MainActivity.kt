@@ -10,12 +10,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.tobuy.screen.main.MainScreen
 import com.example.tobuy.ui.theme.ToBuyTheme
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
 
 val sharedText = MutableStateFlow<String?>(null)
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

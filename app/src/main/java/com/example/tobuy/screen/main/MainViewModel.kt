@@ -3,12 +3,10 @@ package com.example.tobuy.screen.main
 import com.example.tobuy.base.FlowViewModel
 import com.example.tobuy.persistence.database.activityrecords.ActivityRecordsFlow
 import com.example.tobuy.sharedText
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import javax.inject.Inject
 
-@HiltViewModel
 class MainViewModel @Inject constructor(
     private val activityRecordsFlow: ActivityRecordsFlow
 ) : FlowViewModel<MainState, MainEvent>() {
