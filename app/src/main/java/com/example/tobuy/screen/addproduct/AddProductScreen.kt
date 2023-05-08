@@ -164,7 +164,7 @@ fun ClickableLinkInputField(
     ) {
         if (value.isNotEmpty()) {
             InputField(
-                modifier = Modifier.weight(2f),
+                modifier = Modifier.weight(1f),
                 value = value,
                 onValueChange = onValueChange,
                 singleLine = true,
@@ -174,7 +174,6 @@ fun ClickableLinkInputField(
             Spacer(modifier = Modifier.width(4.dp))
 
             Button(
-                modifier = Modifier.weight(1f),
                 shape = CircleShape,
                 onClick = {
                     launchIntent.value = true
@@ -188,7 +187,6 @@ fun ClickableLinkInputField(
             val context = LocalContext.current
 
             IconButton(
-                modifier = Modifier.weight(1f),
                 onClick = {
                     val clipboard =
                         context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
