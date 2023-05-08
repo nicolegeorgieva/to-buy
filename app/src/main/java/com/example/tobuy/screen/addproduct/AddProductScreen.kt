@@ -14,7 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.zIndex
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.tobuy.component.BackButton
 import com.example.tobuy.component.InputField
@@ -67,8 +66,6 @@ fun BottomSheetContent(
 
         LinkParamWithValue(
             text = "Link",
-            modifier1 = Modifier.weight(1f),
-            modifier2 = Modifier.weight(2f),
             value = state.sharedText.ifEmpty { "" },
             placeholder = "Enter link"
         )
@@ -123,8 +120,6 @@ fun ParamWithValue(
 @Composable
 fun LinkParamWithValue(
     text: String,
-    modifier1: Modifier,
-    modifier2: Modifier,
     value: String,
     placeholder: String,
     onValueChange: (String) -> Unit = {}
@@ -134,13 +129,13 @@ fun LinkParamWithValue(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            modifier = modifier1,
+            modifier = Modifier.weight(1f),
             text = text,
             style = MaterialTheme.typography.bodyLarge
         )
 
         ClickableLinkInputField(
-            modifier = modifier2,
+            modifier = Modifier.weight(2f),
             value = value,
             placeholder = placeholder,
             onValueChange = onValueChange
@@ -162,14 +157,11 @@ fun ClickableLinkInputField(
     val coroutineScope = rememberCoroutineScope()
     val launchIntent = remember { mutableStateOf(false) }
 
-    Row {
+    Row(modifier = modifier) {
         InputField(
             value = value,
             onValueChange = onValueChange,
             singleLine = true,
-            modifier = modifier
-                .zIndex(1f)
-                .weight(1f),
             placeholder = placeholder
         )
 
@@ -178,20 +170,18 @@ fun ClickableLinkInputField(
                 onClick = {
                     launchIntent.value = true
                 },
-                modifier = Modifier.zIndex(2f)
             ) {
                 Text("Open")
             }
         }
-    }
 
-    if (value.isEmpty()) {
-        Text(
-            text = placeholder,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = modifier.zIndex(0f)
-        )
+        if (value.isEmpty()) {
+            Text(
+                text = placeholder,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
     }
 
     DisposableEffect(launchIntent.value) {
