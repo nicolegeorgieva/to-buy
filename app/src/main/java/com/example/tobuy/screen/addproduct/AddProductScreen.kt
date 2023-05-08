@@ -1,20 +1,28 @@
 package com.example.tobuy.screen.addproduct
 
 import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.IconButton
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.tobuy.R
 import com.example.tobuy.component.BackButton
 import com.example.tobuy.component.InputField
 import kotlinx.coroutines.launch
@@ -142,7 +150,6 @@ fun LinkParamWithValue(
 @SuppressLint("RememberReturnType")
 @Composable
 fun ClickableLinkInputField(
-    modifier: Modifier = Modifier,
     value: String,
     placeholder: String,
     onValueChange: (String) -> Unit = {}
@@ -155,35 +162,63 @@ fun ClickableLinkInputField(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        InputField(
-            modifier = Modifier.weight(2f),
-            value = value,
-            onValueChange = onValueChange,
-            singleLine = true,
-            placeholder = placeholder
-        )
-
         if (value.isNotEmpty()) {
+            InputField(
+                modifier = Modifier.weight(2f),
+                value = value,
+                onValueChange = onValueChange,
+                singleLine = true,
+                placeholder = placeholder
+            )
+
+            Spacer(modifier = Modifier.width(4.dp))
+
             Button(
                 modifier = Modifier.weight(1f),
+                shape = CircleShape,
                 onClick = {
                     launchIntent.value = true
                 }
             ) {
                 Text("Open")
             }
-        }
-    }
 
-    DisposableEffect(launchIntent.value) {
-        if (launchIntent.value) {
-            coroutineScope.launch {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(value))
-                context.startActivity(intent)
-                launchIntent.value = false
+            Spacer(modifier = Modifier.width(2.dp))
+
+            val context = LocalContext.current
+
+            IconButton(
+                modifier = Modifier.weight(1f),
+                onClick = {
+                    val clipboard =
+                        context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                    val clip = ClipData.newPlainText("link", value)
+                    clipboard.setPrimaryClip(clip)
+                }) {
+                Icon(
+                    painter = painterResource(R.drawable.baseline_content_copy_24),
+                    contentDescription = "Copy link"
+                )
             }
+        } else {
+            InputField(
+                value = value,
+                onValueChange = onValueChange,
+                singleLine = true,
+                placeholder = placeholder
+            )
         }
 
-        onDispose { }
+        DisposableEffect(launchIntent.value) {
+            if (launchIntent.value) {
+                coroutineScope.launch {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(value))
+                    context.startActivity(intent)
+                    launchIntent.value = false
+                }
+            }
+
+            onDispose { }
+        }
     }
 }
